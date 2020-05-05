@@ -109,7 +109,7 @@ paths:
             statusCode: "200"
             responseParameters:
               method.response.header.Cache-Control: "'no-cache, no-store'"
-              method.response.header.Access-Control-Allow-Origin: "'https://api.jonca.co'"
+              method.response.header.Access-Control-Allow-Origin: {"Fn::If": ["IsLocal", "'*'", {"Fn::Sub": ["'https://master.${ampDomain}'", { "ampDomain": {"Fn::GetAtt":["AmplifyApp", "DefaultDomain"]} }]}]}
             responseTemplates:
               application/json: "#set($inputRoot = $input.path('$'))[ \
                 #foreach($elem in $inputRoot.Items) { \
@@ -167,7 +167,7 @@ paths:
           "200":
             statusCode: "200"
             responseParameters:
-              method.response.header.Access-Control-Allow-Origin: method.response.header.Access-Control-Allow-Origin: "'https://api.jonca.co'"
+              method.response.header.Access-Control-Allow-Origin: {"Fn::If": ["IsLocal", "'*'", {"Fn::Sub": ["'https://master.${ampDomain}'", { "ampDomain": {"Fn::GetAtt":["AmplifyApp", "DefaultDomain"]} }]}]}
             responseTemplates:
               application/json: "#set($inputRoot = $input.path('$')) \
                 {\"id\":\"$inputRoot.Attributes.id.S\", \
@@ -177,7 +177,7 @@ paths:
           "400":
             statusCode: "400"
             responseParameters:
-              method.response.header.Access-Control-Allow-Origin: method.response.header.Access-Control-Allow-Origin: "'https://api.jonca.co'"
+              method.response.header.Access-Control-Allow-Origin: {"Fn::If": ["IsLocal", "'*'", {"Fn::Sub": ["'https://master.${ampDomain}'", { "ampDomain": {"Fn::GetAtt":["AmplifyApp", "DefaultDomain"]} }]}]}
             responseTemplates:
               application/json: "#set($inputRoot = $input.path('$')) \
                 #if($inputRoot.toString().contains(\"ConditionalCheckFailedException\")) \
