@@ -20,7 +20,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. -->
       <nav class="navbar is-fixed-top is-dark" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <div class="navbar-item">
-            <img src="/logo.png"><h1 class="title has-text-white">{{appName}}</h1>
+            <img src="/logo.png">
+            <!-- <h1 class="title has-text-white">{{appName}}</h1>-->
           </div>
           <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarCollapse" v-bind:class="{'is-active': isOpen}" @click="isOpen = !isOpen">
             <span aria-hidden="true"></span>
